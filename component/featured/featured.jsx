@@ -1,6 +1,7 @@
 import Center from '../center/center';
 import Button from '../button/button';
 import * as S from './featured.style';
+import ButtonLink from '../buttonlink/buttonlink';
 
 const Featured = ({ product }) => {
   return (
@@ -12,9 +13,13 @@ const Featured = ({ product }) => {
               <S.Title>{product.title}</S.Title>
               <S.Desc>{product.description}</S.Desc>
               <S.ButtonsWrapper>
-                <Button white outline>
+                <ButtonLink
+                  href={'/products/' + product._id}
+                  white={1}
+                  outline={1}
+                >
                   Read More
-                </Button>
+                </ButtonLink>
                 <Button primary>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
