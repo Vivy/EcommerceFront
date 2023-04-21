@@ -16,7 +16,7 @@ export const Desc = styled.p`
 `
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: .9fr 1.1fr;
+  grid-template-columns: 1.1fr .9fr;
   gap: 40px;
   img{
     max-width: 100%;

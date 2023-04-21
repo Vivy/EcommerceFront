@@ -2,23 +2,15 @@ import Center from '../center/center';
 import Button from '../button/button';
 import * as S from './featured.style';
 
-const Featured = () => {
+const Featured = ({ product }) => {
   return (
     <S.Featured>
       <Center>
         <S.Wrapper>
           <S.Column>
             <div>
-              <S.Title>Pro anywhere</S.Title>
-              <S.Desc>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt magni ab aspernatur explicabo quibusdam dolore facere
-                numquam saepe quos iure, fugiat corporis odio minus asperiores
-                nostrum, voluptas similique modi quaerat rem consequatur? Esse
-                beatae ex quas necessitatibus saepe, sunt quasi ea non
-                voluptatem autem. Reprehenderit deleniti soluta cumque quos esse
-                dolorum, laboriosam blanditiis officiis mollitia.
-              </S.Desc>
+              <S.Title>{product.title}</S.Title>
+              <S.Desc>{product.description}</S.Desc>
               <S.ButtonsWrapper>
                 <Button white outline>
                   Read More

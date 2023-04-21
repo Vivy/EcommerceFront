@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Button = styled.button`
+export const ButtonStyle = css`
   border: 0;
   padding: 5px 15px;
   border-radius: 5px;
@@ -32,4 +32,8 @@ export const Button = styled.button`
     height: 20px;
   }
   `}
+`
+
+export const Button = styled.button`
+  ${ButtonStyle}
   `

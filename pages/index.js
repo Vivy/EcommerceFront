@@ -4,11 +4,10 @@ import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/product'
 
 const HomePage = ({ product }) => {
-  console.log(product)
   return (
     <div>
       <Header />
-      <Featured />
+      <Featured product={product} />
     </div>
   )
 }
