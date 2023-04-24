@@ -1,4 +1,5 @@
 import { mongooseConnect } from '@/lib/mongoose';
+import { Order } from '@/models/order';
 import { Product } from '@/models/product';
 
 const handler = async (req, res) => {
@@ -27,7 +28,12 @@ const handler = async (req, res) => {
       })
     }
   }
-  res.json({ line_items })
+  const orderDoc = await Order.create({
+    line_items, name, email, city, postalCode, streetAddress, country, paid
+  })
+
+
+
 }
 
 export default handler
