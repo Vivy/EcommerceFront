@@ -10,7 +10,7 @@ import { ProductImageBox, ProductInfoCell } from '@/component/table/table.style'
 import Input from '@/component/input/input'
 
 const Cart = () => {
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct, clearCart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ const Cart = () => {
   const [postalCode, setPostalCode] = useState('');
   const [streetAddress, setStreetAddress] = useState('');
   const [country, setCountry] = useState('');
-
+  const [isSuccess, setIsSuccess] = useState(false)
 
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -29,6 +29,16 @@ const Cart = () => {
       setProducts([])
     }
   }, [cartProducts])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    if (window?.location.href.includes('success')) {
+      setIsSuccess(true)
+      clearCart()
+    }
+  }, [])
 
   const addMoreProduct = (productId) => {
     addProduct(productId)
@@ -52,6 +62,23 @@ const Cart = () => {
       window.location = response.data.url
     }
   }
+
+  if (isSuccess) {
+    return (
+      <>
+        <Header />
+        <Center>
+          <S.CollumsWrapper>
+            <S.Box  >
+              <h1>Thanks for your order!</h1>
+              <p>We will email you when your order will be sent.</p>
+            </S.Box>
+          </S.CollumsWrapper>
+        </Center>
+      </>
+    )
+  }
+
   return (
     <>
       <Header />
