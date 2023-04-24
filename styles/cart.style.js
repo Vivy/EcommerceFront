@@ -14,3 +14,7 @@ export const Box = styled.div`
 export const QuantityLabel = styled.span`
   padding: 0 3px;
 `
+export const CityHolder = styled.div`
+  display: flex;
+  gap: 5px;
+`

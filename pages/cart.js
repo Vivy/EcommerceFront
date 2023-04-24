@@ -7,16 +7,26 @@ import { CartContext } from '@/component/cartcontext/cartcontext'
 import axios from 'axios'
 import Table from '@/component/table/table'
 import { ProductImageBox, ProductInfoCell } from '@/component/table/table.style'
+import Input from '@/component/input/input'
 
 const Cart = () => {
   const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
   const [products, setProducts] = useState([]);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [streetAddress, setStreetAddress] = useState('');
+  const [country, setCountry] = useState('');
+
 
   useEffect(() => {
     if (cartProducts.length > 0) {
       axios.post('/api/cart', { ids: cartProducts }).then(response => {
         setProducts(response.data);
       })
+    } else {
+      setProducts([])
     }
   }, [cartProducts])
 
@@ -85,9 +95,44 @@ const Cart = () => {
           {!!cartProducts?.length && (
             <S.Box>
               <h2>Order information</h2>
-              <input type='text' placeholder='Address' />
-              <input type='text' placeholder='Address2' />
-              <Button black block >Continue to checkout</Button>
+              <form method='post' action='/api/checkout'>
+                <Input type='text'
+                  placeholder='Name'
+                  value={name}
+                  name='name'
+                  onChange={(e) => setName(e.target.value)} />
+                <Input type='text'
+                  placeholder='Email'
+                  value={email}
+                  name='email'
+                  onChange={(e) => setEmail(e.target.value)} />
+                <S.CityHolder>
+                  <Input type='text'
+                    placeholder='City'
+                    value={city}
+                    name='city'
+                    onChange={(e) => setCity(e.target.value)} />
+                  <Input type='text'
+                    placeholder='Postal Code'
+                    value={postalCode}
+                    name='postalCode'
+                    onChange={(e) => setPostalCode(e.target.value)} />
+                </S.CityHolder>
+                <Input type='text'
+                  placeholder='Street Adress'
+                  value={streetAddress}
+                  name='streetAddress'
+                  onChange={(e) => setStreetAddress(e.target.value)} />
+                <Input type='text'
+                  placeholder='Country'
+                  value={country}
+                  name='country'
+                  onChange={(e) => setCountry(e.target.value)} />
+                <Button black block type='submit'>Continue to checkout</Button>
+                <input
+                  type='hidden'
+                  value={cartProducts.join(',')} name='products' />
+              </form>
             </S.Box>
           )}
         </S.CollumsWrapper>
