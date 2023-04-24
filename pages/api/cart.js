@@ -1,7 +1,7 @@
 import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/product';
 
-const handle = async (res, req) => {
+const handle = async (req, res) => {
   await mongooseConnect();
   const ids = req.body.ids;
   res.json(await Product.find({ _id: ids }))

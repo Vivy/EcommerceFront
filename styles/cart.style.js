@@ -11,3 +11,6 @@ export const Box = styled.div`
   border-radius: 10px;
   padding: 30px;
 `
+export const QuantityLabel = styled.span`
+  padding: 0 3px;
+`
