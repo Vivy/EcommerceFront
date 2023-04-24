@@ -9,7 +9,7 @@ import Table from '@/component/table/table'
 import { ProductImageBox, ProductInfoCell } from '@/component/table/table.style'
 
 const Cart = () => {
-  const { cartProducts, addProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,13 @@ const Cart = () => {
     addProduct(productId)
   }
   const removeMoreProduct = (productId) => {
+    removeProduct(productId)
+  }
 
+  let total = 0;
+  for (const productId of cartProducts) {
+    const price = products.find(p => p._id === productId)?.price || 0;
+    total += price;
   }
 
   return (
@@ -67,6 +73,11 @@ const Cart = () => {
                       </td>
                     </tr>
                   ))}
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>${total}</td>
+                  </tr>
                 </tbody>
               </Table>
             )}
