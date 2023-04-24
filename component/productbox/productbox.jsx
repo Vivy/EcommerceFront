@@ -1,9 +1,11 @@
+import { useContext } from 'react';
 import Button from '../button/button';
-import CartIcon from '../icon/carticon';
 import * as S from './productbox.style';
+import { CartContext } from '../cartcontext/cartcontext';
 
 const ProductBox = ({ _id, title, price, description }) => {
   const url = '/product/' + _id;
+  const { addProduct } = useContext(CartContext);
   return (
     <S.ProductWrapper>
       <S.ProductBox href={url}>
@@ -15,7 +17,7 @@ const ProductBox = ({ _id, title, price, description }) => {
         <S.Title href={url}>{title}</S.Title>
         <S.PriceRow>
           <S.Price>${price}</S.Price>
-          <Button primary outline>
+          <Button primary outline onClick={() => addProduct(_id)}>
             Add to cart
           </Button>
         </S.PriceRow>

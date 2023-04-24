@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import * as S from './header.style';
 import Center from '../center/center';
+import { useContext } from 'react';
+import { CartContext } from '../cartcontext/cartcontext';
 
 const Header = () => {
+  const { cartProducts } = useContext(CartContext);
   return (
     <S.Header>
       <Center>
@@ -13,7 +16,7 @@ const Header = () => {
             <S.NavLink href={'/products'}>Products</S.NavLink>
             <S.NavLink href={'/categories'}>Categories</S.NavLink>
             <S.NavLink href={'/account'}>Account</S.NavLink>
-            <S.NavLink href={'/cart'}>Cart(0)</S.NavLink>
+            <S.NavLink href={'/cart'}>Cart({cartProducts.length})</S.NavLink>
           </S.StyledNav>
         </S.Wrapper>
       </Center>

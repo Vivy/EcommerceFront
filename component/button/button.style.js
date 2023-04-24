@@ -24,6 +24,15 @@ export const ButtonStyle = css`
   background-color: #fff;
   color: #000;
   `}
+  ${({ black, outline }) => black && outline && css`
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
+  `}
+  ${({ black, outline }) => black && !outline && css`
+  background-color: #000;
+  color: #fff;
+  `}
   ${({ primary, outline }) => primary && !outline && css`
   background-color: ${primarycolor};
   border: 1px solid ${primarycolor};
@@ -40,6 +49,10 @@ export const ButtonStyle = css`
   svg {
     height: 20px;
   }
+  `}
+  ${({ block }) => block && css`
+    display: block;
+    width: 100%;
   `}
 `
 
